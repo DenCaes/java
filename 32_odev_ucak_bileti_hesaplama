@@ -1,0 +1,55 @@
+package pkg32_odev_ucak_bileti;
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        int mesafe, yas, yolculukTipi;
+        double fiyat, yasIndirim, tipIndirim;
+        boolean hataliVeri = false;
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Mesafeyi girin");
+        mesafe = input.nextInt();
+
+        System.out.println("Yasinizi girin");
+        yas = input.nextInt();
+
+        System.out.println("Yolculuk tipini giriniz");
+        System.out.println("1-Tek yön \n2- Gidiş-Dönüş");
+        yolculukTipi = input.nextInt();
+
+        fiyat = mesafe * 0.10;
+
+        if (mesafe <= 0 || yas <= 0 || yolculukTipi > 2 || yolculukTipi < 0) {
+            
+            hataliVeri =true;
+        }
+        if (yas < 12) {
+            yasIndirim = fiyat * 0.50;
+            fiyat = fiyat - yasIndirim;
+
+        } else if (yas >= 12 && yas <= 24) {
+            yasIndirim = fiyat * 0.10;
+            fiyat = fiyat - yasIndirim;
+        } else if (yas > 65) {
+            yasIndirim = fiyat * 0.30;
+            fiyat = fiyat - yasIndirim;
+        }
+
+        if (yolculukTipi == 2) {
+            tipIndirim = fiyat * 0.20;
+            fiyat = (fiyat - tipIndirim) * 2;
+
+        }
+        
+        if(hataliVeri){
+           System.out.println("Hatali veri girdiniz");
+        }else {
+           System.out.println("Toplam tutar: " + fiyat); 
+        }
+        
+    }
+
+}
